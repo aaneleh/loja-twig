@@ -1,0 +1,40 @@
+{% include 'header.html' %}
+
+    {% if logo %}
+        <br> tem logo<br>
+    {% endif %}
+
+    {% if produtos %}
+
+        <form method="POST" action="vender.php">
+
+        {% for produto in produtos %}
+
+            <h1>{{produto.nome}}</h1>
+            <p>{{produto.nome }} custa R$ {{produto.valor}}</p>
+
+            <p>Ainda temos {{produto.estoque}} em estoque. Corra para comprar antes de acabar.</p>
+        
+            <input type="number" value="0" name={{produto.id}} min="0">
+            <!-- 
+            <input type="number" value="0" name={{produto.id}} min="0" max={{produto.estoque}}>
+            -->
+        
+        {% else %}
+
+            <h2>Nenhum produto cadastrado!</h2>
+
+        {% endfor %}
+
+            <br> <br> <br>
+
+            <input type="submit" value="Comprar">
+
+        </form>
+
+    {% else %}
+        <h1> {{cabecalho}}
+        <p> {{ texto }}
+    {% endif %}
+
+{% include 'footer.html' %}
